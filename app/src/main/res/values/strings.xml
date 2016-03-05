@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">StickyHeaderGridApp</string>
+    <string name="title_activity_main">MainActivity</string>
+</resources>
