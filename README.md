@@ -1,4 +1,4 @@
-StickyGridHeaders
+StickyGridHeaders [android]
 ========
 
 Usage
