@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.onecode.stickyheadergrid.adapter.StickyGridAdapter;
 import com.onecode.stickyheadergrid.viewholder.BaseViewHolder;
@@ -43,7 +44,7 @@ public class ExampleAdapter extends StickyGridAdapter<ExampleModel, ExampleAdapt
     }
 
     @Override
-    protected void populateHeader(ExampleModel data, HeaderViewHolder headerViewHolder) {
+    protected void populateHeader(final ExampleModel data, HeaderViewHolder headerViewHolder) {
         headerViewHolder.title.setText(data.getTitle());
         switch (data.getTitle()) {
             case STRING_GROUP_A:
@@ -61,6 +62,23 @@ public class ExampleAdapter extends StickyGridAdapter<ExampleModel, ExampleAdapt
             default:
                 headerViewHolder.root.setBackgroundColor(Color.BLACK);
         }
+        headerViewHolder.button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext,
+                        "Title: " + data.getTitle() + "; Button1",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        headerViewHolder.button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext,
+                        "Title: " + data.getTitle() + "; Button2",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -129,24 +147,6 @@ public class ExampleAdapter extends StickyGridAdapter<ExampleModel, ExampleAdapt
             title = (TextView) root.findViewById(R.id.adapter_example_header_title);
             button1 = (Button) root.findViewById(R.id.button1);
             button2 = (Button) root.findViewById(R.id.button2);
-
-            setListeners();
-        }
-
-        private void setListeners() {
-            button1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.w("ExampleAdapter", "button1");
-                }
-            });
-
-            button2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.w("ExampleAdapter", "button2");
-                }
-            });
         }
     }
 }
