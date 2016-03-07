@@ -109,7 +109,7 @@ Add the JitPack repository to your root build.gradle:
 Add the Gradle dependency:
 ```groovy
 	dependencies {
-		compile 'com.github.goodengineer:StickyGridHeaders:1.0.2@aar'
+		compile 'com.github.OneCodeLabs:StickyGridHeaders:1.0.2@aar'
 	}
 ```
 
