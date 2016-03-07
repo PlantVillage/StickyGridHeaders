@@ -115,7 +115,7 @@ Add the Gradle dependency:
 
 Example
 --------
-![example_grid](https://cloud.githubusercontent.com/assets/4495145/13553253/d16286f0-e361-11e5-89ef-3ae095b8fdb1.gif)
+![example_gif](https://cloud.githubusercontent.com/assets/4495145/13576108/bd33322e-e46a-11e5-8bf1-2343d503975e.gif)
 
 The example source code is included in this repository.
 
