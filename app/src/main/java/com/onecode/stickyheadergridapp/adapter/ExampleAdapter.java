@@ -2,7 +2,9 @@ package com.onecode.stickyheadergridapp.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.onecode.stickyheadergrid.adapter.StickyGridAdapter;
@@ -118,11 +120,33 @@ public class ExampleAdapter extends StickyGridAdapter<ExampleModel, ExampleAdapt
 
         TextView title;
         View root;
+        Button button1;
+        Button button2;
 
         public HeaderViewHolder(View root) {
             super(root);
-            title = (TextView) root.findViewById(R.id.adapter_example_header_title);
             this.root = root;
+            title = (TextView) root.findViewById(R.id.adapter_example_header_title);
+            button1 = (Button) root.findViewById(R.id.button1);
+            button2 = (Button) root.findViewById(R.id.button2);
+
+            setListeners();
+        }
+
+        private void setListeners() {
+            button1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.w("ExampleAdapter", "button1");
+                }
+            });
+
+            button2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.w("ExampleAdapter", "button2");
+                }
+            });
         }
     }
 }
