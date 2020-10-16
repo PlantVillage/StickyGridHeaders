@@ -13,9 +13,11 @@ package com.onecode.stickyheadergrid.tonicartos;
  limitations under the License.
  */
 
+import android.app.Activity;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.graphics.Canvas;
+import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Handler;
@@ -28,6 +30,7 @@ import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -39,6 +42,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.Context.WINDOW_SERVICE;
 
 /**
  * GridView that displays items in sections with headers that stick to the top
@@ -1020,27 +1025,6 @@ public class StickyGridHeadersGridView extends GridView implements AbsListView.O
         if (header == null) {
             return;
         }
-
-        try {
-            Field attachInfoField = View.class.getDeclaredField("mAttachInfo");
-            attachInfoField.setAccessible(true);
-            Method method = View.class.getDeclaredMethod("dispatchAttachedToWindow",
-                    Class.forName("android.view.View$AttachInfo"), Integer.TYPE);
-            method.setAccessible(true);
-            method.invoke(header, attachInfoField.get(this), View.GONE);
-        } catch (NoSuchMethodException e) {
-            throw new RuntimePlatformSupportException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimePlatformSupportException(e);
-        } catch (IllegalArgumentException e) {
-            throw new RuntimePlatformSupportException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimePlatformSupportException(e);
-        } catch (InvocationTargetException e) {
-            throw new RuntimePlatformSupportException(e);
-        } catch (NoSuchFieldException e) {
-            throw new RuntimePlatformSupportException(e);
-        }
     }
 
     void detachHeader(View header) {
@@ -1048,19 +1032,7 @@ public class StickyGridHeadersGridView extends GridView implements AbsListView.O
             return;
         }
 
-        try {
-            Method method = View.class.getDeclaredMethod("dispatchDetachedFromWindow");
-            method.setAccessible(true);
-            method.invoke(header);
-        } catch (NoSuchMethodException e) {
-            throw new RuntimePlatformSupportException(e);
-        } catch (IllegalArgumentException e) {
-            throw new RuntimePlatformSupportException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimePlatformSupportException(e);
-        } catch (InvocationTargetException e) {
-            throw new RuntimePlatformSupportException(e);
-        }
+
     }
 
     public interface OnHeaderClickListener {
